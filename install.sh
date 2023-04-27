@@ -228,6 +228,49 @@ function remove_component() {
     fi
 }
 
+# Install kubectl completion
+function install_kubectl_completion() {
+    info "Installing kubectl completion"
+    if (kubectl completion bash > /etc/bash_completion.d/kubectl); then
+        info "kubectl completion installed successfully"
+    else
+        error "Could not install kubectl completion"
+    fi
+}
+
+# Install helm completion
+function install_helm_completion() {
+    info "Installing helm completion"
+    if (helm completion bash > /etc/bash_completion.d/helm); then
+        info "helm completion installed successfully"
+    else
+        error "Could not install helm completion"
+    fi
+}
+
+# Auto complete for kubecolor
+function install_kubecolor_completion() {
+    info "Auto complete for kubecolor"
+    if (echo "complete -F __start_kubectl k" >> ~/.bashrc); then
+        info "Auto complete for kubecolor successfully"
+    else
+        error "Could not auto complete for kubecolor"
+    fi
+}
+
+# Alias k as kubecolor
+function alias_kubecolor() {
+    info "Alias k as kubecolor"
+    if (echo "alias k='kubecolor'" >> ~/.bashrc); then
+        info "Alias k as kubecolor successfully"
+    else
+        error "Could not alias k as kubecolor"
+    fi
+}
+
+
+
+
 # Help
 function help() {
     echo "Usage: install.sh [OPTION] [COMPONENT]"
