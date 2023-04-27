@@ -185,36 +185,36 @@ function install_kubectl() {
 # Install helm component
 function install_helm() {
     check_installed_component "helm"
-    download_component "helm" https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz
-    check_sum "helm" https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz.sha256
-    uncompress_file helm-v${HELM_VERSION}-linux-amd64.tar.gz
+    download_component "helm" "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz"
+    check_sum "helm" "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz.sha256"
+    uncompress_file "helm-v${HELM_VERSION}-linux-amd64.tar.gz"
     install_files linux-amd64/helm
 }
 
 # Install kubens component
 function install_kubens() {
     check_installed_component "kubens"
-    download_component "kubens" https://github.com/ahmetb/kubectx/releases/download/v${KUBENS_VERSION}/kubens_v${KUBENS_VERSION}_linux_x86_64.tar.gz
-    check_sum "kubens" https://github.com/ahmetb/kubectx/releases/download/v${KUBENS_VERSION}/checksums.txt
-    uncompress_file kubens_v${KUBENS_VERSION}_linux_x86_64.tar.gz
+    download_component "kubens" "https://github.com/ahmetb/kubectx/releases/download/v${KUBENS_VERSION}/kubens_v${KUBENS_VERSION}_linux_x86_64.tar.gz"
+    check_sum "kubens" "https://github.com/ahmetb/kubectx/releases/download/v${KUBENS_VERSION}/checksums.txt"
+    uncompress_file "kubens_v${KUBENS_VERSION}_linux_x86_64.tar.gz"
     install_files "kubens"
 }
 
 # Install kubectx component
 function install_kubectx() {
     check_installed_component "kubectx"
-    download_component "kubectx" https://github.com/ahmetb/kubectx/releases/download/v${KUBECTX_VERSION}/kubectx_v${KUBECTX_VERSION}_linux_x86_64.tar.gz
-    check_sum "kubectx" https://github.com/ahmetb/kubectx/releases/download/v${KUBECTX_VERSION}/checksums.txt
-    uncompress_file kubectx_v${KUBECTX_VERSION}_linux_x86_64.tar.gz
+    download_component "kubectx" "https://github.com/ahmetb/kubectx/releases/download/v${KUBECTX_VERSION}/kubectx_v${KUBECTX_VERSION}_linux_x86_64.tar.gz"
+    check_sum "kubectx" "https://github.com/ahmetb/kubectx/releases/download/v${KUBECTX_VERSION}/checksums.txt"
+    uncompress_file "kubectx_v${KUBECTX_VERSION}_linux_x86_64.tar.gz"
     install_files "kubectx"
 }
 
 # Install kubecolor component
 function install_kubecolor() {
     check_installed_component "kubecolor"
-    download_component "kubecolor" https://github.com/kubecolor/kubecolor/releases/download/v${KUBECOLOR_VERSION}/kubecolor_${KUBECOLOR_VERSION}_Linux_x86_64.tar.gz
-    check_sum "kubecolor" https://github.com/kubecolor/kubecolor/releases/download/v${KUBECOLOR_VERSION}/checksums.txt
-    uncompress_file kubecolor_${KUBECOLOR_VERSION}_Linux_x86_64.tar.gz
+    download_component "kubecolor" "https://github.com/kubecolor/kubecolor/releases/download/v${KUBECOLOR_VERSION}/kubecolor_${KUBECOLOR_VERSION}_Linux_x86_64.tar.gz"
+    check_sum "kubecolor" "https://github.com/kubecolor/kubecolor/releases/download/v${KUBECOLOR_VERSION}/checksums.txt"
+    uncompress_file "kubecolor_${KUBECOLOR_VERSION}_Linux_x86_64.tar.gz"
     install_files "kubecolor"
 }
 
