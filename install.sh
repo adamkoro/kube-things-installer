@@ -345,6 +345,10 @@ while [[ "$#" -gt 0 ]]; do
                     install_kubectx
                     message "Installing kubecolor"
                     install_kubecolor
+                    message "Setting up aliases and bash compleations"
+                    install_kubectl_completion
+                    install_kubecolor_completion
+                    alias_kubecolor
                     clean_up
                     exit 0
                     ;;
