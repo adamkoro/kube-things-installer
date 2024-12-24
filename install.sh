@@ -1,8 +1,6 @@
 #!/bin/bash
 # Created by adamkoro
 #
-
-
 # Check variables if empty
 function check_variables() {
     if [[ -z "${HELM_VERSION}" ]]; then
