@@ -1,26 +1,21 @@
 #!/bin/bash
 # Created by adamkoro
 #
-# Variables default values:
-#    HELM_VERSION="3.11.3"
-#    KUBENS_VERSION="0.9.4"
-#    KUBECTX_VERSION="0.9.4"
-#    KUBECOLOR_VERSION="0.0.21"
 
 
 # Check variables if empty
 function check_variables() {
     if [[ -z "${HELM_VERSION}" ]]; then
-        HELM_VERSION="3.11.3"
+        HELM_VERSION="3.16.4"
     fi
     if [[ -z "${KUBENS_VERSION}" ]]; then
-        KUBENS_VERSION="0.9.4"
+        KUBENS_VERSION="0.9.5"
     fi
     if [[ -z "${KUBECTX_VERSION}" ]]; then
         KUBECTX_VERSION=${KUBENS_VERSION}
     fi
     if [[ -z "${KUBECOLOR_VERSION}" ]]; then
-        KUBECOLOR_VERSION="0.0.21"
+        KUBECOLOR_VERSION="0.4.0"
     fi
     if [[ -z "${TMP_DIR}" ]]; then
         TMP_DIR="$(mktemp -d)"
@@ -212,9 +207,9 @@ function install_kubectx() {
 # Install kubecolor component
 function install_kubecolor() {
     check_installed_component "kubecolor"
-    download_component "kubecolor" "https://github.com/kubecolor/kubecolor/releases/download/v${KUBECOLOR_VERSION}/kubecolor_${KUBECOLOR_VERSION}_Linux_x86_64.tar.gz"
+    download_component "kubecolor" "https://github.com/kubecolor/kubecolor/releases/download/v${KUBECOLOR_VERSION}/kubecolor_${KUBECOLOR_VERSION}_linux_amd64.tar.gz"
     check_sum "kubecolor" "https://github.com/kubecolor/kubecolor/releases/download/v${KUBECOLOR_VERSION}/checksums.txt"
-    uncompress_file "kubecolor_${KUBECOLOR_VERSION}_Linux_x86_64.tar.gz"
+    uncompress_file "kubecolor_${KUBECOLOR_VERSION}_linux_amd64.tar.gz"
     install_files "kubecolor"
 }
 
@@ -257,6 +252,18 @@ function install_kubecolor_completion() {
         error "Could not auto complete for kubecolor"
     fi
 }
+
+# TODO: kubens and kubectx completion
+function install_kubens_completion() {
+    info "Auto complete for kubens"
+    sudo curl -L https://raw.githubusercontent.com/ahmetb/kubectx/master/completion/kubens.bash -o /etc/bash_completion.d/kubens.bash
+}
+
+function install_kubectx_completion() {
+    info "Auto complete for kubectx"
+    curl -L https://raw.githubusercontent.com/ahmetb/kubectx/master/completion/kubectx.bash -o /etc/bash_completion.d/kubectx.bash
+}
+
 
 # Alias k as kubecolor
 function alias_kubecolor() {
@@ -337,44 +344,54 @@ while [[ "$#" -gt 0 ]]; do
                 -a|--all)
                     message "Installing kubectl"
                     install_kubectl
+                    install_kubectl_completion
                     message "Installing helm"
                     install_helm
+                    install_helm_completion
                     message "Installing kubens"
                     install_kubens
+                    install_kubens_completion
                     message "Installing kubectx"
                     install_kubectx
+                    install_kubectx_completion
                     message "Installing kubecolor"
                     install_kubecolor
+                    install_kubecolor_completion
                     clean_up
                     exit 0
                     ;;
                 kubectl)
                     message "Installing kubectl"
                     install_kubectl
+                    install_kubectl_completion
                     clean_up
                     exit 0
                     ;;
                 helm)
                     message "Installing helm"
                     install_helm
+                    install_helm_completion
                     clean_up
                     exit 0
                     ;;
                 kubens)
                     message "Installing kubens"
                     install_kubens
+                    install_kubens_completion
                     clean_up
                     exit 0
                     ;;
                 kubectx)
                     message "Installing kubectx"
                     install_kubectx
+                    install_kubectx_completion
                     clean_up
                     exit 0
                     ;;
                 kubecolor)
                     message "Installing kubecolor"
                     install_kubecolor
+                    install_kubecolor_completion
                     clean_up
                     exit 0
                     ;;
