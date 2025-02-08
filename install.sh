@@ -4,7 +4,7 @@
 # Check variables if empty
 function check_variables() {
     if [[ -z "${HELM_VERSION}" ]]; then
-        HELM_VERSION="3.16.4"
+        HELM_VERSION="3.17.0"
     fi
     if [[ -z "${KUBENS_VERSION}" ]]; then
         KUBENS_VERSION="0.9.5"
@@ -13,7 +13,7 @@ function check_variables() {
         KUBECTX_VERSION=${KUBENS_VERSION}
     fi
     if [[ -z "${KUBECOLOR_VERSION}" ]]; then
-        KUBECOLOR_VERSION="0.4.0"
+        KUBECOLOR_VERSION="0.5.0"
     fi
     if [[ -z "${TMP_DIR}" ]]; then
         TMP_DIR="$(mktemp -d)"
